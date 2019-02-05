@@ -3,7 +3,9 @@
 
 namespace Doctrine\Bundle\MongoDBBundle\DependencyInjection;
 
+use Doctrine\Bundle\MongoDBBundle\DependencyInjection\Compiler\FixturesCompilerPass;
 use Doctrine\Bundle\MongoDBBundle\DependencyInjection\Compiler\ServiceRepositoryCompilerPass;
+use Doctrine\Bundle\MongoDBBundle\Fixture\ODMFixtureInterface;
 use Doctrine\Bundle\MongoDBBundle\Repository\ServiceDocumentRepositoryInterface;
 use Symfony\Bridge\Doctrine\DependencyInjection\AbstractDoctrineExtension;
 use Symfony\Component\Config\FileLocator;
@@ -54,7 +56,11 @@ class DoctrineMongoDBExtension extends AbstractDoctrineExtension
         $config = $this->overrideParameters($config, $container);
 
         // set the fixtures loader
+        // @todo still used?
         $container->setParameter('doctrine_mongodb.odm.fixture_loader', $config['fixture_loader']);
+
+        $container->registerForAutoconfiguration(ODMFixtureInterface::class)
+            ->addTag(FixturesCompilerPass::FIXTURE_TAG);
 
         // load the connections
         $this->loadConnections($config['connections'], $container);
