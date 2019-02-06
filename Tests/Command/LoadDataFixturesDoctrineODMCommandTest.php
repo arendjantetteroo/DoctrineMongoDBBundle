@@ -48,17 +48,17 @@ class SymfonyFixturesLoaderMock implements SymfonyFixturesLoaderInterface
 {
     protected $fixtures;
 
-    public function addFixture(FixtureInterface $fixture): void
+    public function addFixture(FixtureInterface $fixture)
     {
         $this->fixtures[] = $fixture;
     }
 
-    public function addFixtures(array $fixtures): void
+    public function addFixtures(array $fixtures)
     {
         $this->fixtures = $fixtures;
     }
 
-    public function getFixtures(array $groups = []): array
+    public function getFixtures(array $groups = [])
     {
         return $this->fixtures;
     }

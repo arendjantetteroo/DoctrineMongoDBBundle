@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Doctrine\Bundle\MongoDBBundle\Loader;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
@@ -11,10 +9,10 @@ interface SymfonyFixturesLoaderInterface
     /**
      * @internal
      */
-    public function addFixtures(array $fixtures) : void;
+    public function addFixtures(array $fixtures);
 
 
-    public function addFixture(FixtureInterface $fixture) : void;
+    public function addFixture(FixtureInterface $fixture);
 
     /**
      * Returns the array of data fixtures to execute.
@@ -23,5 +21,5 @@ interface SymfonyFixturesLoaderInterface
      *
      * @return FixtureInterface[]
      */
-    public function getFixtures(array $groups = []) : array;
+    public function getFixtures(array $groups = []);
 }

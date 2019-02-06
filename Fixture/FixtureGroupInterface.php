@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Doctrine\Bundle\MongoDBBundle\Fixture;
 
 /**
@@ -15,5 +13,5 @@ interface FixtureGroupInterface
      *
      * @return string[]
      */
-    public static function getGroups() : array;
+    public static function getGroups();
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Doctrine\Bundle\MongoDBBundle\Fixture;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;

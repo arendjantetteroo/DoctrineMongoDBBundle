@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Doctrine\Bundle\MongoDBBundle\Loader;
 
 use Doctrine\Bundle\MongoDBBundle\DependencyInjection\Compiler\FixturesCompilerPass;
@@ -28,7 +26,7 @@ final class SymfonyFixturesLoader extends ContainerAwareLoader
     /**
      * @internal
      */
-    public function addFixtures(array $fixtures) : void
+    public function addFixtures(array $fixtures)
     {
         // Because parent::addFixture may call $this->createFixture
         // we cannot call $this->addFixture in this loop
@@ -45,7 +43,7 @@ final class SymfonyFixturesLoader extends ContainerAwareLoader
         }
     }
 
-    public function addFixture(FixtureInterface $fixture) : void
+    public function addFixture(FixtureInterface $fixture)
     {
         $class                        = get_class($fixture);
         $this->loadedFixtures[$class] = $fixture;
@@ -65,7 +63,7 @@ final class SymfonyFixturesLoader extends ContainerAwareLoader
      *
      * @param string $class
      */
-    protected function createFixture($class) : FixtureInterface
+    protected function createFixture($class)
     {
         /*
          * We don't actually need to create the fixture. We just
@@ -90,7 +88,7 @@ final class SymfonyFixturesLoader extends ContainerAwareLoader
      *
      * @return FixtureInterface[]
      */
-    public function getFixtures(array $groups = []) : array
+    public function getFixtures(array $groups = [])
     {
         $fixtures = parent::getFixtures();
 
@@ -121,7 +119,7 @@ final class SymfonyFixturesLoader extends ContainerAwareLoader
      *
      * @param string[] $groups
      */
-    private function addGroupsFixtureMapping(string $className, array $groups) : void
+    private function addGroupsFixtureMapping($className, array $groups)
     {
         foreach ($groups as $group) {
             $this->groupsFixtureMapping[$group][$className] = true;
@@ -133,7 +131,7 @@ final class SymfonyFixturesLoader extends ContainerAwareLoader
      *
      * @throws RuntimeException
      */
-    private function validateDependencies(array $fixtures, FixtureInterface $fixture) : void
+    private function validateDependencies(array $fixtures, FixtureInterface $fixture)
     {
         if (! $fixture instanceof DependentFixtureInterface) {
             return;
