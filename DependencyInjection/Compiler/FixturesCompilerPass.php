@@ -18,9 +18,6 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
-/**
- *
- */
 final class FixturesCompilerPass implements CompilerPassInterface
 {
     const FIXTURE_TAG = 'doctrine.fixture.odm';
