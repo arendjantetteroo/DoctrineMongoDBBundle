@@ -27,8 +27,23 @@ final class FixturesCompilerPass implements CompilerPassInterface
         $definition = $container->getDefinition('doctrine.mongodb.odm.fixtures.loader');
         $taggedServices = $container->findTaggedServiceIds(self::FIXTURE_TAG);
 
+        $fixtures = [];
         foreach ($taggedServices as $serviceId => $tags) {
-            $definition->addMethodCall('addFixture', [new Reference($serviceId)]);
+            $groups = [];
+            foreach ($tags as $tagData) {
+                if (! isset($tagData['group'])) {
+                    continue;
+                }
+
+                $groups[] = $tagData['group'];
+            }
+
+            $fixtures[] = [
+                'fixture' => new Reference($serviceId),
+                'groups' => $groups,
+            ];
         }
+
+        $definition->addMethodCall('addFixtures', [$fixtures]);
     }
 }
