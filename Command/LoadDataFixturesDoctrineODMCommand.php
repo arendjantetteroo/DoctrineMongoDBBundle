@@ -3,6 +3,7 @@
 
 namespace Doctrine\Bundle\MongoDBBundle\Command;
 
+use Doctrine\Bundle\MongoDBBundle\Loader\SymfonyFixturesLoaderInterface;
 use Doctrine\Bundle\MongoDBBundle\ManagerRegistry;
 use Doctrine\Bundle\MongoDBBundle\Loader\SymfonyFixturesLoader;
 use Doctrine\Common\DataFixtures\Executor\MongoDBExecutor;
@@ -27,7 +28,7 @@ class LoadDataFixturesDoctrineODMCommand extends DoctrineODMCommand
 
     private $fixturesLoader;
     
-    public function __construct(ManagerRegistry $registry = null, KernelInterface $kernel = null, SymfonyFixturesLoader $fixturesLoader)
+    public function __construct(ManagerRegistry $registry = null, KernelInterface $kernel = null, SymfonyFixturesLoaderInterface $fixturesLoader)
     {
         parent::__construct($registry);
 
